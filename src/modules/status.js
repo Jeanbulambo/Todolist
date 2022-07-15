@@ -12,7 +12,7 @@ class Status {
     clearTaskCompleted = () => {
       const todo = localS.getLocalStorage();
 
-      const newTodo = todo.filter((task) => task.completed === 0);
+      const newTodo = todo.filter((task) => task.completed = false);
       localStorage.setItem('todo', JSON.stringify(newTodo));
     }
 }
