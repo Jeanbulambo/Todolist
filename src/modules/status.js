@@ -1,14 +1,11 @@
 import LocalStorage from './local_storage.js';
-import Task from './task.js';
 
 const localS = new LocalStorage();
-const task = new Task();
 
 class Status {
     updateTaskCompletedStatus = (index, status) => {
       const todo = localS.getLocalStorage();
       todo[index].completed = status;
-      console.log(todo[index]);
       localStorage.setItem('todo', JSON.stringify(todo));
     }
 

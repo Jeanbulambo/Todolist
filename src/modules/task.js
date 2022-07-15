@@ -1,4 +1,5 @@
 import LocalStorage from './local_storage.js';
+/* eslint-env node */
 import Status from './status.js';
 
 const mainListCard = document.querySelector('.main-list-card');
@@ -33,12 +34,10 @@ class Task {
     });
 
     // for the checkbox
+    /* eslint no-console: 2 */
     todoCard.addEventListener('click', (e) => {
       if (e.target.getAttribute('type') === 'checkbox') {
         if (e.target.checked === true) {
-          console.log('it is checked');
-          console.log(e.target.id);
-          console.log(localS.getLocalStorage());
           status.updateTaskCompletedStatus(Number(e.target.id), 1);
         } else {
           status.updateTaskCompletedStatus(Number(e.target.id), 0);
