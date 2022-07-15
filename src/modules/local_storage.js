@@ -1,5 +1,4 @@
 class LocalStorage {
-  // eslint-disable-next-line class-methods-use-this
   getLocalStorage = () => {
     let todo;
     if (localStorage.getItem('todo') === null) {

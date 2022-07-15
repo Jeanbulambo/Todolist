@@ -7,7 +7,6 @@ const inputTodo = document.getElementById('input-todo');
 const addTodo = document.querySelector('.add-todo');
 const error = document.querySelector('.error-msg');
 const reload = document.querySelector('.reload');
-// const clearCompleted = document.querySelector('.clear');
 
 // create a todo task object
 const todo = (index, description, completed) => new TodoTask(index, description, completed);
@@ -54,10 +53,3 @@ window.addEventListener('load', () => {
 reload.addEventListener('click', () => {
   task.generateTodo();
 });
-
-// const status = new status();
-
-// clearCompleted.addEventListener('click', () => {
-//   status.clearTaskCompleted();
-//   task.generateTodo();
-// });

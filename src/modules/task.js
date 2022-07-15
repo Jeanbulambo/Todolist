@@ -1,5 +1,4 @@
 import LocalStorage from './local_storage.js';
-/* eslint-env node */
 import Status from './status.js';
 
 const mainListCard = document.querySelector('.main-list-card');
@@ -11,7 +10,6 @@ const localS = new LocalStorage();
 const status = new Status();
 
 class Task {
-  // eslint-disable-next-line class-methods-use-this
   createTask = (task) => {
     const todoCard = document.createElement('div');
     todoCard.classList.add('todo');
@@ -34,7 +32,7 @@ class Task {
     });
 
     // for the checkbox
-    /* eslint no-console: 2 */
+
     todoCard.addEventListener('click', (e) => {
       if (e.target.getAttribute('type') === 'checkbox') {
         if (e.target.checked === true) {
@@ -58,7 +56,6 @@ class Task {
     }
   }
 
-  // eslint-disable-next-line class-methods-use-this
   removeTask = (t) => {
     if (t.classList.contains('fa-trash-can')) {
       t.parentElement.parentElement.remove();

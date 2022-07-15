@@ -11,9 +11,7 @@ class Status {
 
     clearTaskCompleted = () => {
       const todo = localS.getLocalStorage();
-      // for (let i = 0; i < todo.length; i += 1) {
-      //     todo[i].index = i;
-      // }
+
       const newTodo = todo.filter((task) => task.completed === 0);
       localStorage.setItem('todo', JSON.stringify(newTodo));
     }
