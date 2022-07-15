@@ -1,42 +1,63 @@
+import TodoTask from './modules/todoTask.js';
+import LocalStorage from './modules/local_storage.js';
+import Task from './modules/task.js';
 import './style.css';
 
-let todoList = [
-  {
-    description: 'Giving Feedback',
-    isCompleted: false,
-    index: 3,
-  },
-  {
-    description: 'Going on field',
-    isCompleted: false,
-    index: 2,
-  },
-  {
-    description: 'Tasks dispatching',
-    isCompleted: false,
-    index: 1,
-  },
-  {
-    description: 'Meeting',
-    isCompleted: false,
-    index: 0,
-  },
-];
+const inputTodo = document.getElementById('input-todo');
+const addTodo = document.querySelector('.add-todo');
+const error = document.querySelector('.error-msg');
+const reload = document.querySelector('.reload');
+const clearCompleted = document.querySelector('.clear');
 
-localStorage.setItem('todo', JSON.stringify(todoList));
+// create a todo task object
+const todo = (index, description, completed) => new TodoTask(index, description, completed);
 
-const todoContainer = document.querySelector('#todo');
-const populateList = () => {
-  todoList = JSON.parse(localStorage.getItem('todo'));
-  todoList.forEach((item) => {
-    const li = document.createElement('li');
-    li.innerHTML = `<button class="check-item">
-            <i class="fa-regular fa-square">
-            </i>${item.description}</button>
-            <button class="move-item">
-            <i class="fa-solid fa-ellipsis-vertical"></i>
-            </button>`;
-    todoContainer.insertBefore(li, todoContainer.children[item.index]);
-  });
+const localS = new LocalStorage();
+
+const task = new Task();
+
+const status = new Status();
+
+const getTodoLastIndex = () => localS.getLocalStorage().length;
+
+addTodo.addEventListener('click', (e) => {
+  e.preventDefault();
+  const msg = [];
+
+  if (inputTodo.value === '') {
+    msg.push('Empty field!');
+    error.innerText = msg.join(', ');
+  } else {
+    localS.setStorage(todo(getTodoLastIndex(), inputTodo.value, 0));
+    task.createTask(todo(getTodoLastIndex(), inputTodo.value, 0));
+  }
+  inputTodo.value = '';
+});
+
+const handleChange = () => {
+  const tempDescription = inputTodo.value;
+  localStorage.setItem('tempDescription', JSON.stringify(tempDescription));
 };
-populateList();
+
+inputTodo.onkeyup = handleChange;
+
+const getChange = () => {
+  const tempDescription = localStorage.getItem('tempDescription');
+  if (tempDescription) {
+    inputTodo.value = JSON.parse(tempDescription);
+  }
+};
+
+window.addEventListener('load', () => {
+  task.generateTodo();
+  getChange();
+});
+
+reload.addEventListener('click', () => {
+  task.generateTodo();
+});
+
+clearCompleted.addEventListener('click', () => {
+  status.clearTaskCompleted();
+  task.generateTodo();
+});
