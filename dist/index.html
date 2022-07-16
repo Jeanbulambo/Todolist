@@ -9,32 +9,22 @@
 <script defer src="main.js"></script></head>
 
 <body>
-
-    <section class="sec-container">
-        <div class="main-card">
-            <div class="top-card">
+    <div class="wrapper-container">
+        <div class="wrapper">
+            <div class="top">
                 <h2>Today's Schedule</h2>
                 <button type="submit"><i class="fas fa-sync fa-xs"></i></button>
             </div>
-
-
-            <form id="form-container" >
-                <input type="text" placeholder="Add to your list....." class="text" id="input-todo" size="50">
+            <form id="form">
+                <input type="text" placeholder="Add to your list..." class="text">
                 <button type="submit"><i class="fa fa-reply"></i></button>
             </form>
-
-            <ul id="section-list">
-
+            <ul id="todoList">
             </ul>
-
             <footer>
-                <span class="clear">Clear all completed</span>
+                <span class="clear-completed">Clear all completed</span>
             </footer>
-
         </div>
-
-    </section>
-
+    </div>
 </body>
-
 </html>

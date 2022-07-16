@@ -1,21 +1,18 @@
 /* eslint-disable import/no-cycle */
 import './style.css';
-import showTasks from './task.js';
-import saveTodoInLocalStorage from './Local_storage.js';
-import getTasksFromLocalStorage from './todoTask.js';
-
-import removeTodo from './tasks.js';
-import removeCompletedTasks from './removetask.js';
+import showTasks from './showTodos.js';
+import { saveTodoInLocalStorage } from './settingup__localstorage.js';
+import getTasksFromLocalStorage from './getTodos.js';
+import removeTodo from './remove.js';
+import removeCompletedTasks from './clearTodos.js';
 
 const input = document.querySelector('.text');
-const form = document.getElementById('form-container');
-const removeCompleted = document.querySelector('.clear');
+const form = document.getElementById('form');
+const removeCompleted = document.querySelector('.clear-completed');
 
 function clearInput() {
   input.value = '';
 }
-
-// Adding task
 
 const addTodoTask = (e) => {
   const tasks = getTasksFromLocalStorage();
@@ -44,7 +41,7 @@ const setIndex = (tasks) => {
 
 form.addEventListener('submit', addTodoTask);
 
-const myTodoList = document.getElementById('section-list');
+const myTodoList = document.getElementById('todoList');
 myTodoList.addEventListener('click', (event) => {
   if (event.target.classList.contains('delete-task')) {
     const listKey = event.target.parentElement.parentElement.dataset.key;

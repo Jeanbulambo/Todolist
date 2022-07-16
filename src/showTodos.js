@@ -1,8 +1,8 @@
-import getTasksFromLocalStorage from './todoTask.js';
+import getTasksFromLocalStorage from './getTodos.js';
 import updateStaus from './status.js';
-import { setLocalStorage } from './Local_storage.js';
+import { setLocalStorage } from './settingup__localstorage.js';
 
-const myTodoList = document.getElementById('section-list');
+const myTodoList = document.getElementById('todoList');
 const showTasks = () => {
   myTodoList.innerHTML = '';
   const tasks = getTasksFromLocalStorage();
