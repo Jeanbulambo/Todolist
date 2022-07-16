@@ -3,12 +3,14 @@ import { setLocalStorage } from './Local_storage.js';
 import getTasksFromLocalStorage from './todoTask.js';
 // eslint-disable-next-line import/no-cycle
 import setIndex from './index.js';
+// Remove Completed Tasks
+const removeCompletedTasks = () => {
+  let tasks = getTasksFromLocalStorage();
 
-const removeTodo = (key) => {
-  const tasks = getTasksFromLocalStorage();
-  tasks.splice((key - 1), 1);
+  tasks = tasks.filter((item) => item.completed === false);
   setIndex(tasks);
   setLocalStorage(tasks);
   showTasks();
 };
-export default removeTodo;
+
+export default removeCompletedTasks;

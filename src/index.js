@@ -1,55 +1,58 @@
-import TodoTask from './modules/todoTask.js';
-import LocalStorage from './modules/local_storage.js';
-import Task from './modules/task.js';
+/* eslint-disable import/no-cycle */
 import './style.css';
+import showTasks from './task.js';
+import saveTodoInLocalStorage from './Local_storage.js';
+import getTasksFromLocalStorage from './todoTask.js';
 
-const inputTodo = document.getElementById('input-todo');
-const addTodo = document.querySelector('.add-todo');
-const error = document.querySelector('.error-msg');
-const reload = document.querySelector('.reload');
+import removeTodo from './tasks.js';
+import removeCompletedTasks from './removetask.js';
 
-// create a todo task object
-const todo = (index, description, completed) => new TodoTask(index, description, completed);
+const input = document.querySelector('.text');
+const form = document.getElementById('form-container');
+const removeCompleted = document.querySelector('.clear');
 
-const localS = new LocalStorage();
+function clearInput() {
+  input.value = '';
+}
 
-const task = new Task();
+// Adding task
 
-const getTodoLastIndex = () => localS.getLocalStorage().length;
-
-addTodo.addEventListener('click', (e) => {
+const addTodoTask = (e) => {
+  const tasks = getTasksFromLocalStorage();
   e.preventDefault();
-  const msg = [];
 
-  if (inputTodo.value === '') {
-    msg.push('Empty field!');
-    error.innerText = msg.join(', ');
-  } else {
-    localS.setStorage(todo(getTodoLastIndex(), inputTodo.value, 0));
-    task.createTask(todo(getTodoLastIndex(), inputTodo.value, 0));
+  if (input.value === '') {
+    return;
   }
-  inputTodo.value = '';
-});
 
-const handleChange = () => {
-  const tempDescription = inputTodo.value;
-  localStorage.setItem('tempDescription', JSON.stringify(tempDescription));
+  const todo = {
+    description: input.value,
+    completed: false,
+    index: tasks.length + 1,
+  };
+
+  clearInput();
+  saveTodoInLocalStorage(todo);
+  showTasks();
 };
 
-inputTodo.onkeyup = handleChange;
-
-const getChange = () => {
-  const tempDescription = localStorage.getItem('tempDescription');
-  if (tempDescription) {
-    inputTodo.value = JSON.parse(tempDescription);
+const setIndex = (tasks) => {
+  for (let i = 0; i < tasks.length; i += 1) {
+    tasks[i].index = i + 1;
   }
 };
 
-window.addEventListener('load', () => {
-  task.generateTodo();
-  getChange();
-});
+form.addEventListener('submit', addTodoTask);
 
-reload.addEventListener('click', () => {
-  task.generateTodo();
+const myTodoList = document.getElementById('section-list');
+myTodoList.addEventListener('click', (event) => {
+  if (event.target.classList.contains('delete-task')) {
+    const listKey = event.target.parentElement.parentElement.dataset.key;
+    removeTodo(listKey);
+  }
 });
+removeCompleted.addEventListener('click', removeCompletedTasks);
+
+showTasks();
+
+export default setIndex;
