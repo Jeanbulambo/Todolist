@@ -1,42 +1,58 @@
+/* eslint-disable import/no-cycle */
 import './style.css';
+import showTasks from './task.js';
+import saveTodoInLocalStorage from './Local_storage.js';
+import getTasksFromLocalStorage from './todoTask.js';
 
-let todoList = [
-  {
-    description: 'Giving Feedback',
-    isCompleted: false,
-    index: 3,
-  },
-  {
-    description: 'Going on field',
-    isCompleted: false,
-    index: 2,
-  },
-  {
-    description: 'Tasks dispatching',
-    isCompleted: false,
-    index: 1,
-  },
-  {
-    description: 'Meeting',
-    isCompleted: false,
-    index: 0,
-  },
-];
+import removeTodo from './tasks.js';
+import removeCompletedTasks from './removetask.js';
 
-localStorage.setItem('todo', JSON.stringify(todoList));
+const input = document.querySelector('.text');
+const form = document.getElementById('form-container');
+const removeCompleted = document.querySelector('.clear');
 
-const todoContainer = document.querySelector('#todo');
-const populateList = () => {
-  todoList = JSON.parse(localStorage.getItem('todo'));
-  todoList.forEach((item) => {
-    const li = document.createElement('li');
-    li.innerHTML = `<button class="check-item">
-            <i class="fa-regular fa-square">
-            </i>${item.description}</button>
-            <button class="move-item">
-            <i class="fa-solid fa-ellipsis-vertical"></i>
-            </button>`;
-    todoContainer.insertBefore(li, todoContainer.children[item.index]);
-  });
+function clearInput() {
+  input.value = '';
+}
+
+// Adding task
+
+const addTodoTask = (e) => {
+  const tasks = getTasksFromLocalStorage();
+  e.preventDefault();
+
+  if (input.value === '') {
+    return;
+  }
+
+  const todo = {
+    description: input.value,
+    completed: false,
+    index: tasks.length + 1,
+  };
+
+  clearInput();
+  saveTodoInLocalStorage(todo);
+  showTasks();
 };
-populateList();
+
+const setIndex = (tasks) => {
+  for (let i = 0; i < tasks.length; i += 1) {
+    tasks[i].index = i + 1;
+  }
+};
+
+form.addEventListener('submit', addTodoTask);
+
+const myTodoList = document.getElementById('section-list');
+myTodoList.addEventListener('click', (event) => {
+  if (event.target.classList.contains('delete-task')) {
+    const listKey = event.target.parentElement.parentElement.dataset.key;
+    removeTodo(listKey);
+  }
+});
+removeCompleted.addEventListener('click', removeCompletedTasks);
+
+showTasks();
+
+export default setIndex;

@@ -1,6 +1,6 @@
 # Microverse-to-do-list
 
-> A simple ToDo list app using ES6 and webpack.
+> A simple  list of tasks app using ES6 and webpack.
 
 ## Live Demo
 
@@ -23,7 +23,7 @@ To get a local copy up and running follow these simple example steps.
 install git, node, any code editor in your local machine
 
 ### Setup
-clone the repo or download from https://github.com/Jeanbulambo/Todolist
+clone the repo or download from git@github.com:Jeanbulambo/Todolist-repo.git
 
 ### Install dependencies
 

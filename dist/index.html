@@ -1,28 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://kit.fontawesome.com/1dea6ac3ad.js" crossorigin="anonymous"></script>
-    <title>My Schedule</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Webpack App</title>
 <script defer src="main.js"></script></head>
+
 <body>
-    <main>
-        <p id="header">Today's Schedule
-            <button id="refresh" type="button">
-            <i class="fa-solid fa-arrows-rotate"></i>
-            </button>
-        </p>
-        <input 
-            type="text" 
-            id="new-item" 
-            placeholder="Add to your list...">
-        
-        <ul id="todo">
-        </ul>
-        
-        <p id="remove-completed">Clear all completed</p>
-        </main>
+
+    <section class="sec-container">
+        <div class="main-card">
+            <div class="top-card">
+                <h2>Today's Schedule</h2>
+                <button type="submit"><i class="fas fa-sync fa-xs"></i></button>
+            </div>
+
+
+            <form id="form-container" >
+                <input type="text" placeholder="Add to your list....." class="text" id="input-todo" size="50">
+                <button type="submit"><i class="fa fa-reply"></i></button>
+            </form>
+
+            <ul id="section-list">
+
+            </ul>
+
+            <footer>
+                <span class="clear">Clear all completed</span>
+            </footer>
+
+        </div>
+
+    </section>
+
 </body>
+
 </html>

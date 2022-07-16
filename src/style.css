@@ -1,99 +1,153 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  padding: 10px;
+  background: #b3abab;
+}
+
+.main-card {
+  background: #fff;
+  max-width: 45%;
+  width: 100%;
+  margin: 130px auto;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.todo-title,
+#form-container,
+.task {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #dadadc;
+  min-height: 30px;
+  max-height: 70px;
+  width: 95%;
+  margin: 0 auto;
+  align-items: center;
+  gap: 15px;
+  padding: 0 5px;
+}
+
+button,
+.text,
+label {
+  appearance: none;
+  outline: none;
+  border: none;
+  background-color: inherit;
+}
+
+label {
+  padding-right: 80px;
+}
+
+label:hover {
+  cursor: text;
+}
+
+.sec-container {
   height: 100vh;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #e9ecef;
-  font-family: sans-serif;
-}
-
-main {
-  width: 40%;
-  min-width: 450px;
-  font-size: 17px;
-  display: flex;
   flex-direction: column;
-  align-items: center;
-  background-color: #fff;
-  box-sizing: border-box;
-  border-radius: 8px;
-  box-shadow: rgba(90, 87, 87, 0.35) 0 6px 12px;
-}
-
-#header {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  padding: 30px 30px 20px;
-  box-sizing: border-box;
-  margin: 0;
-}
-
-#new-item {
-  width: 100%;
-  font-size: 15px;
-  padding: 15px 30px;
-  border-radius: 4px;
-  border: 1px solid #e9ecef;
-  box-sizing: border-box;
-  outline: none;
-  color: #8b8c89;
-}
-
-#new-item::placeholder {
-  color: #a5a58d;
-  font-style: italic;
-}
-
-#todo {
-  width: 100%;
-  min-height: 67px;
-  padding: 0;
-  margin: 0;
-  list-style-type: none;
-  font-weight: 300;
-}
-
-#todo li {
-  display: flex;
-  justify-content: space-between;
-  padding: 15px 25px;
-  box-sizing: border-box;
-  border-bottom: 1px solid #e9ecef;
-}
-
-button {
-  min-width: 30px;
-  cursor: pointer;
-  background-color: transparent;
-  border: none;
-  font-size: 1rem;
-  font-family: inherit;
-  display: flex;
-  align-items: baseline;
   justify-content: center;
+  align-items: center;
 }
 
-i {
-  font-size: 17px;
-  color: #a1a1a0;
+#section-list li label {
+  color: #545862;
+  font-size: 15px;
+  font-weight: 400;
 }
 
-.fa-square {
-  margin-right: 15px;
-}
-
-#remove-completed {
+.main-card .top-card h2 {
   width: 100%;
-  text-align: center;
+  display: flex;
+  height: 55px;
+  padding: 24px 15px;
+  font-size: 19px;
+  color: rgb(20, 20, 20);
+  font-weight: 450;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+button i {
+  color: #c3c4c7;
+  transition: 250ms ease-in-out;
+}
+
+button i:hover {
+  color: brown;
   cursor: pointer;
-  color: #a1a1a0;
+}
+
+.text {
+  font-size: 14px;
+  caret-color: red;
+  color: #545862;
+  width: 70%;
+}
+
+.text::placeholder {
+  font-style: italic;
+  opacity: 0.5;
+}
+
+#section-list {
   margin: 0;
-  padding: 15px;
-  box-sizing: border-box;
-  background-color: #f5f3f4;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
+  padding: 0;
+}
+
+#section-list li {
+  position: relative;
+  list-style: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 13px 15px;
+  cursor: default;
+  overflow: hidden;
+  word-wrap: break-word;
+}
+
+#section-list li input[type="checkbox"] {
+  margin-right: 5px;
+  outline: 0;
+}
+
+#section-list .ellipsis i:hover {
+  cursor: move;
+}
+
+.cc {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  text-decoration: none;
+  color: #000;
+  opacity: 0.8;
+  height: 40px;
+  transition: 300ms;
+  font-size: 15px;
+  border-radius: 12px;
+}
+
+.box:checked + .form-label {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.main-card footer {
+  display: flex;
+  height: 55px;
+  align-items: center;
+  justify-content: center;
+  background-color: #cdced0;
 }
