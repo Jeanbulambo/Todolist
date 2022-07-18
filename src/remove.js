@@ -1,7 +1,7 @@
-import showTasks from './task.js';
-import { setLocalStorage } from './Local_storage.js';
-import getTasksFromLocalStorage from './todoTask.js';
-// eslint-disable-next-line import/no-cycle
+import showTasks from './showTodos.js';
+import { setLocalStorage } from './settingup__localstorage.js';
+import getTasksFromLocalStorage from './getTodos.js';
+/* eslint-disable import/no-cycle */
 import setIndex from './index.js';
 
 const removeTodo = (key) => {
@@ -11,4 +11,5 @@ const removeTodo = (key) => {
   setLocalStorage(tasks);
   showTasks();
 };
+
 export default removeTodo;

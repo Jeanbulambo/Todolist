@@ -1,4 +1,4 @@
-import getTasksFromLocalStorage from './todoTask.js';
+import getTasksFromLocalStorage from './getTodos.js';
 
 const setLocalStorage = (lists) => {
   localStorage.setItem('allTasks', JSON.stringify(lists));
