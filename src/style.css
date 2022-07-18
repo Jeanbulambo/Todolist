@@ -81,9 +81,9 @@ label:hover {
   height: 55px;
   padding: 20px 15px;
   font-size: 17px;
-  color: #333;
+  color: rgb(184, 179, 179);
   font-weight: 400;
-  border-bottom: 1px solid #a8a4a4;
+  border-bottom: 1px solid #f1ebeb;
 }
 
 button i {
